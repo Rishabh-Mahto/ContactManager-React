@@ -3,23 +3,17 @@ import { Link } from "react-router-dom";
 import ContactCard from "./ContactCard";
 
 export const ContactList = (props) => {
-    // console.log(props);
+    console.log(props);
     const deleteContactHandler = (id) => {
         props.getContactId(id);
     };
 
-    const contacts = [
-        {
-            id: "1",
-            name: "John",
-            email: "john@example.com",
-        }
-    ];
 
-    const renderContactList = props.contacts.map((contact) => {
+    
+    const renderContactList = Array.isArray(props.contacts) ? props.contacts.map((contact) => {
         return <ContactCard contact={contact} key={contact.id} clickHandler={deleteContactHandler} />;
-    });
-
+    }) : null;
+    
     return (
         <div className="mt-4">
             <div className="flex justify-between">
